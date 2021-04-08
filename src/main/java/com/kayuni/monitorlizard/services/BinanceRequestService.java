@@ -1,12 +1,10 @@
 package com.kayuni.monitorlizard.services;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 public class BinanceRequestService implements ExchangeRequestService {
-    
-    private Timestamp startDate;
+
+    private LocalDateTime startDate;
     private String apiKey;
     private String apiSecret;
 
@@ -18,16 +16,32 @@ public class BinanceRequestService implements ExchangeRequestService {
 
     }
 
-    public Timestamp getStartDate() {
+    public LocalDateTime getStartDate() {
         return this.startDate;
 
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
     public void setStartDate() {
-        this.startDate = (Timestamp) Calendar.getInstance().getTime();
+        this.startDate = LocalDateTime.now();
+    }
+
+    public String getApiKey() {
+        return this.apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    public String getApiSecret() {
+        return this.apiSecret;
+    }
+
+    public void setApiSecret(String apiSecret) {
+        this.apiSecret = apiSecret;
     }
 }

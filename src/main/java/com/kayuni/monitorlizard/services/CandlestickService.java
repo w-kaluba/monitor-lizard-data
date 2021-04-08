@@ -1,15 +1,14 @@
 package com.kayuni.monitorlizard.services;
 
-import com.kayuni.monitorlizard.models.Candlestick;
 import com.kayuni.monitorlizard.dto.CandlestickDTO;
-import java.sql.Date;
+import com.kayuni.monitorlizard.models.Candlestick;
 
 public interface CandlestickService {
     public void insertCandlestick(CandlestickDTO candlestick);
 
-    public void removeCandlestick(Long id);
+    public void removeCandlestick(Long openTime);
 
-    public CandlestickDTO getCandlestick(Date timestamp);
+    public CandlestickDTO getCandlestick(Long openTime);
 
-    public String updateCandlestick(Date timestamp, Candlestick candlestick);
+    public String updateCandlestick(Long openTime, Candlestick candlestick);
 }

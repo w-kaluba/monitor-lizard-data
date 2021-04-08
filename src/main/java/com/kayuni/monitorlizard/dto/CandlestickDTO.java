@@ -1,11 +1,8 @@
 package com.kayuni.monitorlizard.dto;
 
-import java.sql.Date;
 import com.kayuni.monitorlizard.models.Candlestick;
 
 public class CandlestickDTO {
-
-    private Date timestamp;
 
     private Long openTime;
 
@@ -32,7 +29,7 @@ public class CandlestickDTO {
     public CandlestickDTO() {
     }
 
-    public CandlestickDTO(Date timestamp, Long openTime, String open, String high, String low, String close,
+    public CandlestickDTO(Long openTime, String open, String high, String low, String close,
             String volume, Long closeTime, String quoteAssetVolume, Long numberOfTrades, String takerBuyBaseAssetVolume,
             String takerBuyQuoteAssetVolume) {
         super();
@@ -48,14 +45,6 @@ public class CandlestickDTO {
         this.takerBuyBaseAssetVolume = takerBuyBaseAssetVolume;
         this.takerBuyQuoteAssetVolume = takerBuyQuoteAssetVolume;
 
-    }
-
-    public Date getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
     }
 
     public Long getOpenTime() {
@@ -146,19 +135,27 @@ public class CandlestickDTO {
         this.takerBuyQuoteAssetVolume = takerBuyQuoteAssetVolume;
     }
 
+
     @Override
     public String toString() {
-        return "{" + " timestamp='" + getTimestamp() + "'" + ", openTime='" + getOpenTime() + "'" + ", open='"
-                + getOpen() + "'" + ", high='" + getHigh() + "'" + ", low='" + getLow() + "'" + ", close='" + getClose()
-                + "'" + ", volume='" + getVolume() + "'" + ", closeTime='" + getCloseTime() + "'"
-                + ", quoteAssetVolume='" + getQuoteAssetVolume() + "'" + ", numberOfTrades='" + getNumberOfTrades()
-                + "'" + ", takerBuyBaseAssetVolume='" + getTakerBuyBaseAssetVolume() + "'"
-                + ", takerBuyQuoteAssetVolume='" + getTakerBuyQuoteAssetVolume() + "'" + "}";
+        return "{" +
+            " openTime='" + getOpenTime() + "'" +
+            ", open='" + getOpen() + "'" +
+            ", high='" + getHigh() + "'" +
+            ", low='" + getLow() + "'" +
+            ", close='" + getClose() + "'" +
+            ", volume='" + getVolume() + "'" +
+            ", closeTime='" + getCloseTime() + "'" +
+            ", quoteAssetVolume='" + getQuoteAssetVolume() + "'" +
+            ", numberOfTrades='" + getNumberOfTrades() + "'" +
+            ", takerBuyBaseAssetVolume='" + getTakerBuyBaseAssetVolume() + "'" +
+            ", takerBuyQuoteAssetVolume='" + getTakerBuyQuoteAssetVolume() + "'" +
+            "}";
     }
+
 
     public static Candlestick prepareCandlestickEntity(CandlestickDTO candlestickDTO) {
         Candlestick candlestickEntity = new Candlestick();
-        candlestickEntity.setTimestamp(candlestickDTO.getTimestamp());
         candlestickEntity.setOpenTime(candlestickDTO.getOpenTime());
         candlestickEntity.setOpen(candlestickDTO.getOpen());
         candlestickEntity.setHigh(candlestickDTO.getHigh());

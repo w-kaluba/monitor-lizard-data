@@ -1,29 +1,17 @@
 package com.kayuni.monitorlizard.models;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.kayuni.monitorlizard.dto.CandlestickDTO;
-
-import javax.persistence.SequenceGenerator;
 
 @Entity
 @Table(name = "binance")
 public class Candlestick {
 
     @Id
-    @GeneratedValue
-    private Long id;
-
-    @Column(unique = true)
-    private Date timestamp;
-
     @Column(name = "openTime")
     private Long openTime;
 
@@ -45,7 +33,7 @@ public class Candlestick {
     @Column(name = "closeTime")
     private Long closeTime;
 
-    @Column(name = "quoteAssetVolume", nullable=false)
+    @Column(name = "quoteAssetVolume", nullable = false)
     private String quoteAssetVolume;
 
     @Column(name = "numberOfTrades")
@@ -57,13 +45,11 @@ public class Candlestick {
     @Column(name = "takerBuyQuoteAssetVolume")
     private String takerBuyQuoteAssetVolume;
 
+
     public Candlestick() {
     }
 
-    public Candlestick(Date timestamp, Long openTime, String open, String high, String low, String close, String volume,
-            Long closeTime, String quoteAssetVolume, Long numberOfTrades, String takerBuyBaseAssetVolume,
-            String takerBuyQuoteAssetVolume) {
-        this.timestamp = timestamp;
+    public Candlestick(Long openTime, String open, String high, String low, String close, String volume, Long closeTime, String quoteAssetVolume, Long numberOfTrades, String takerBuyBaseAssetVolume, String takerBuyQuoteAssetVolume) {
         this.openTime = openTime;
         this.open = open;
         this.high = high;
@@ -75,14 +61,6 @@ public class Candlestick {
         this.numberOfTrades = numberOfTrades;
         this.takerBuyBaseAssetVolume = takerBuyBaseAssetVolume;
         this.takerBuyQuoteAssetVolume = takerBuyQuoteAssetVolume;
-    }
-
-    public Date getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
     }
 
     public Long getOpenTime() {
@@ -174,7 +152,6 @@ public class Candlestick {
     }
 
     public void updateCandlestickData(Candlestick candlestick) {
-        this.timestamp = candlestick.timestamp;
         this.openTime = candlestick.openTime;
         this.open = candlestick.open;
         this.high = candlestick.high;
@@ -190,17 +167,23 @@ public class Candlestick {
 
     @Override
     public String toString() {
-        return "{" + " timestamp='" + getTimestamp() + "'" + ", openTime='" + getOpenTime() + "'" + ", open='"
-                + getOpen() + "'" + ", high='" + getHigh() + "'" + ", low='" + getLow() + "'" + ", close='" + getClose()
-                + "'" + ", volume='" + getVolume() + "'" + ", closeTime='" + getCloseTime() + "'"
-                + ", quoteAssetVolume='" + getQuoteAssetVolume() + "'" + ", numberOfTrades='" + getNumberOfTrades()
-                + "'" + ", takerBuyBaseAssetVolume='" + getTakerBuyBaseAssetVolume() + "'"
-                + ", takerBuyQuoteAssetVolume='" + getTakerBuyQuoteAssetVolume() + "'" + "}";
+        return "{" +
+            " openTime='" + getOpenTime() + "'" +
+            ", open='" + getOpen() + "'" +
+            ", high='" + getHigh() + "'" +
+            ", low='" + getLow() + "'" +
+            ", close='" + getClose() + "'" +
+            ", volume='" + getVolume() + "'" +
+            ", closeTime='" + getCloseTime() + "'" +
+            ", quoteAssetVolume='" + getQuoteAssetVolume() + "'" +
+            ", numberOfTrades='" + getNumberOfTrades() + "'" +
+            ", takerBuyBaseAssetVolume='" + getTakerBuyBaseAssetVolume() + "'" +
+            ", takerBuyQuoteAssetVolume='" + getTakerBuyQuoteAssetVolume() + "'" +
+            "}";
     }
-
+    
     public static CandlestickDTO prepareCandlestickDTO(Candlestick candlestick) {
         CandlestickDTO candlestickDTO = new CandlestickDTO();
-        candlestickDTO.setTimestamp(candlestick.getTimestamp());
         candlestickDTO.setOpenTime(candlestick.getOpenTime());
         candlestickDTO.setOpen(candlestick.getOpen());
         candlestickDTO.setHigh(candlestick.getHigh());
