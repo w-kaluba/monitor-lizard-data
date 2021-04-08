@@ -24,37 +24,37 @@ public class Candlestick {
     @Column(unique = true)
     private Date timestamp;
 
-    @Column(name = "openTime", nullable = false)
+    @Column(name = "openTime")
     private Long openTime;
 
-    @Column(name = "open", nullable = false)
+    @Column(name = "open")
     private String open;
 
-    @Column(name = "high", nullable = false)
+    @Column(name = "high")
     private String high;
 
-    @Column(name = "low", nullable = false)
+    @Column(name = "low")
     private String low;
 
-    @Column(name = "close", nullable = false)
+    @Column(name = "close")
     private String close;
 
-    @Column(name = "volume", nullable = false)
+    @Column(name = "volume")
     private String volume;
 
-    @Column(name = "closeTime", nullable = false)
+    @Column(name = "closeTime")
     private Long closeTime;
 
-    @Column(name = "quoteAssetVolume", nullable = false)
+    @Column(name = "quoteAssetVolume", nullable=false)
     private String quoteAssetVolume;
 
-    @Column(name = "numberOfTrades", nullable = false)
+    @Column(name = "numberOfTrades")
     private Long numberOfTrades;
 
-    @Column(name = "takerBuyBaseAssetVolume", nullable = false)
+    @Column(name = "takerBuyBaseAssetVolume")
     private String takerBuyBaseAssetVolume;
 
-    @Column(name = "takerBuyQuoteAssetVolume", nullable = false)
+    @Column(name = "takerBuyQuoteAssetVolume")
     private String takerBuyQuoteAssetVolume;
 
     public Candlestick() {

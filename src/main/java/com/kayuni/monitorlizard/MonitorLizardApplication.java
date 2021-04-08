@@ -41,27 +41,27 @@ public class MonitorLizardApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Calendar calendar = Calendar.getInstance();
 
-		CandlestickDTO candlestick1 = new CandlestickDTO(new Date(calendar.getTimeInMillis()), Long.valueOf(0L), "open", "high",
-				"low", "close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
-				"takerBuyQuoteAssetVolume");
+		CandlestickDTO candlestick1 = new CandlestickDTO(new Date(calendar.getTimeInMillis()), Long.valueOf(0L), "open",
+				"high", "low", "close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L),
+				"takerBuyAssetVolume", "takerBuyQuoteAssetVolume");
 		Thread.sleep(2000);
 		calendar = Calendar.getInstance();
-		CandlestickDTO candlestick2 = new CandlestickDTO(new Date(calendar.getTimeInMillis()), Long.valueOf(0L), "open", "high",
-				"low", "close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
-				"takerBuyQuoteAssetVolume");
+		CandlestickDTO candlestick2 = new CandlestickDTO(new Date(calendar.getTimeInMillis()), Long.valueOf(0L), "open",
+				"high", "low", "close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L),
+				"takerBuyAssetVolume", "takerBuyQuoteAssetVolume");
 		Thread.sleep(2000);
 		calendar = Calendar.getInstance();
-		CandlestickDTO candlestick3 = new CandlestickDTO(new Date(calendar.getTimeInMillis()), Long.valueOf(0L), "open", "high",
-				"low", "close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
-				"takerBuyQuoteAssetVolume");
-
+		CandlestickDTO candlestick3 = new CandlestickDTO(new Date(calendar.getTimeInMillis()), Long.valueOf(0L), "open",
+				"high", "low", "close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L),
+				"takerBuyAssetVolume", "takerBuyQuoteAssetVolume");
+		System.out.println(candlestick3);
 		service.insertCandlestick(candlestick1);
 		service.insertCandlestick(candlestick2);
 		service.insertCandlestick(candlestick3);
 		logger.info("Candlesticks successfully added");
 
 		logger.info("Printing candlesticks");
-		CandlestickDTO candlestickDTO = service.getCandlestick((Date) calendar.getTime());
+		CandlestickDTO candlestickDTO = service.getCandlestick(new Date(calendar.getTimeInMillis()));
 		logger.info(candlestickDTO.toString());
 	}
 

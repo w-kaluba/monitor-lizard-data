@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import com.kayuni.monitorlizard.repositories.CandlestickRepository;
 import java.util.Optional;
+
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kayuni.monitorlizard.models.Candlestick;
@@ -27,6 +29,7 @@ public class BinanceCandlestickService implements CandlestickService {
 
     @Override
     public CandlestickDTO getCandlestick(Date timestamp) {
+        System.out.println(repository.findAll().toString());
         Candlestick candlestick = repository.findByTimestamp(timestamp).get(0);
         CandlestickDTO candlestickDTO = Candlestick.prepareCandlestickDTO(candlestick);
         return candlestickDTO;
