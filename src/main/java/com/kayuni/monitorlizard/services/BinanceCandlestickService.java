@@ -25,8 +25,9 @@ public class BinanceCandlestickService implements CandlestickService {
 
     @Override
     public CandlestickDTO getCandlestick(Long openTime) {
+        // TO-DO: 
         System.out.println(repository.findAll().toString());
-        Candlestick candlestick = repository.findAll().get(0);
+        Candlestick candlestick = repository.findByOpenTime(openTime).get(0);
         CandlestickDTO candlestickDTO = Candlestick.prepareCandlestickDTO(candlestick);
         return candlestickDTO;
     }
