@@ -5,11 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.binance.api.client.domain.market.Candlestick;
 import com.kayuni.monitorlizard.dto.CandlestickDTO;
 
 @Entity
 @Table(name = "binance")
-public class Candlestick {
+public class CandlestickEntity {
 
     @Id
     @Column(name = "openTime")
@@ -46,10 +47,10 @@ public class Candlestick {
     private String takerBuyQuoteAssetVolume;
 
 
-    public Candlestick() {
+    public CandlestickEntity() {
     }
 
-    public Candlestick(Long openTime, String open, String high, String low, String close, String volume, Long closeTime, String quoteAssetVolume, Long numberOfTrades, String takerBuyBaseAssetVolume, String takerBuyQuoteAssetVolume) {
+    public CandlestickEntity(Long openTime, String open, String high, String low, String close, String volume, Long closeTime, String quoteAssetVolume, Long numberOfTrades, String takerBuyBaseAssetVolume, String takerBuyQuoteAssetVolume) {
         this.openTime = openTime;
         this.open = open;
         this.high = high;
@@ -151,7 +152,7 @@ public class Candlestick {
         this.takerBuyQuoteAssetVolume = takerBuyQuoteAssetVolume;
     }
 
-    public void updateCandlestickData(Candlestick candlestick) {
+    public void updateCandlestickData(CandlestickEntity candlestick) {
         this.openTime = candlestick.openTime;
         this.open = candlestick.open;
         this.high = candlestick.high;
@@ -182,6 +183,21 @@ public class Candlestick {
             "}";
     }
     
+    public static CandlestickDTO prepareCandlestickDTO(CandlestickEntity candlestick) {
+        CandlestickDTO candlestickDTO = new CandlestickDTO();
+        candlestickDTO.setOpenTime(candlestick.getOpenTime());
+        candlestickDTO.setOpen(candlestick.getOpen());
+        candlestickDTO.setHigh(candlestick.getHigh());
+        candlestickDTO.setLow(candlestick.getLow());
+        candlestickDTO.setClose(candlestick.getClose());
+        candlestickDTO.setVolume(candlestick.getVolume());
+        candlestickDTO.setCloseTime(candlestick.getCloseTime());
+        candlestickDTO.setNumberOfTrades(candlestick.getNumberOfTrades());
+        candlestickDTO.setTakerBuyBaseAssetVolume(candlestick.getTakerBuyBaseAssetVolume());
+        candlestickDTO.setTakerBuyQuoteAssetVolume(candlestick.getTakerBuyQuoteAssetVolume());
+        return candlestickDTO;
+    }
+
     public static CandlestickDTO prepareCandlestickDTO(Candlestick candlestick) {
         CandlestickDTO candlestickDTO = new CandlestickDTO();
         candlestickDTO.setOpenTime(candlestick.getOpenTime());

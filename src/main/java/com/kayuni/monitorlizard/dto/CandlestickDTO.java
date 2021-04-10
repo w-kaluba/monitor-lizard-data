@@ -1,6 +1,6 @@
 package com.kayuni.monitorlizard.dto;
 
-import com.kayuni.monitorlizard.models.Candlestick;
+import com.kayuni.monitorlizard.models.CandlestickEntity;
 
 public class CandlestickDTO {
 
@@ -154,8 +154,8 @@ public class CandlestickDTO {
     }
 
 
-    public static Candlestick prepareCandlestickEntity(CandlestickDTO candlestickDTO) {
-        Candlestick candlestickEntity = new Candlestick();
+    public static CandlestickEntity prepareCandlestickEntity(CandlestickDTO candlestickDTO) {
+        CandlestickEntity candlestickEntity = new CandlestickEntity();
         candlestickEntity.setOpenTime(candlestickDTO.getOpenTime());
         candlestickEntity.setOpen(candlestickDTO.getOpen());
         candlestickEntity.setHigh(candlestickDTO.getHigh());
