@@ -1,12 +1,12 @@
 package com.kayuni.monitorlizard.services;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public interface ExchangeRequestService {
 
     public void updateCache(String symbol);
-    public LocalDateTime getStartDate();
+    public Instant getStartDate();
     public void setStartDate();
-    public void setStartDate(LocalDateTime timestamp);
+    public void setStartDate(Instant startTime);
 
 }

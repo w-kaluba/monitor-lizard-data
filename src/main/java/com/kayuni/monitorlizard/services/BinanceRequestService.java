@@ -1,7 +1,6 @@
 package com.kayuni.monitorlizard.services;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import com.binance.api.client.BinanceApiAsyncRestClient;
 import com.binance.api.client.BinanceApiCallback;
@@ -22,20 +21,20 @@ public class BinanceRequestService implements ExchangeRequestService {
     @Autowired
     BinanceCandlestickService service;
 
-    private LocalDateTime startDate;
+    private Instant startTime;
     @Value("${BINANCE_API_KEY}")
     private String apiKey;
-    @Value("${BINANCE_API_KEY}")
+    @Value("${BINANCE_API_SECRET}")
     private String apiSecret;
     private BinanceApiAsyncRestClient client;
 
     BinanceRequestService() {
-        this.startDate = LocalDateTime.now();
+        this.startTime = Instant.now();
         this.client = new BinanceApiAsyncRestClientImpl(this.apiKey, this.apiSecret);
     }
 
-    BinanceRequestService(LocalDateTime startDate) {
-        this.startDate = startDate;
+    BinanceRequestService(Instant startTime) {
+        this.startTime = startTime;
         this.client = new BinanceApiAsyncRestClientImpl(this.apiKey, this.apiSecret);
     }
 
@@ -45,17 +44,17 @@ public class BinanceRequestService implements ExchangeRequestService {
         client.getCandlestickBars(symbol, CandlestickInterval.ONE_MINUTE, 500, startTime, endTime, new BinanceUpdateCallback());
     }
 
-    public LocalDateTime getStartDate() {
-        return this.startDate;
+    public Instant getStartDate() {
+        return this.startTime;
 
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
+    public void setStartDate(Instant startTime) {
+        this.startTime = startTime;
     }
 
     public void setStartDate() {
-        this.startDate = LocalDateTime.now();
+        this.startTime = Instant.now();
     }
 
     public String getApiKey() {
