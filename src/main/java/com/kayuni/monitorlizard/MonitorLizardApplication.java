@@ -1,8 +1,13 @@
 package com.kayuni.monitorlizard;
 
 
+import java.util.List;
+import java.time.ZonedDateTime;
+import java.util.TimeZone;
+
 import com.kayuni.monitorlizard.dto.CandlestickDTO;
-import com.kayuni.monitorlizard.services.BinanceCandlestickService;
+import com.kayuni.monitorlizard.services.binance.BinanceCandlestickService;
+import com.kayuni.monitorlizard.services.binance.BinanceRequestService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +31,13 @@ public class MonitorLizardApplication implements CommandLineRunner {
 	@Autowired
 	BinanceCandlestickService service;
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void runAfterStartup() {
-		System.out.println("Run after startup.");
-	}
+	@Autowired
+	BinanceRequestService requestService;
+
+	// @EventListener(ApplicationReadyEvent.class)
+	// public void runAfterStartup() {
+	// 	System.out.println("Run after startup.");
+	// }
 
 	public static void main(String[] args) {
 		SpringApplication.run(MonitorLizardApplication.class, args);
@@ -37,28 +45,34 @@ public class MonitorLizardApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		CandlestickDTO candlestick1 = new CandlestickDTO(Long.valueOf(0L), "open", "high", "low",
-				"close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
-				"takerBuyQuoteAssetVolume");
-		Thread.sleep(2000);
-		CandlestickDTO candlestick2 = new CandlestickDTO(Long.valueOf(0L), "open", "high", "low",
-				"close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
-				"takerBuyQuoteAssetVolume");
-		Thread.sleep(2000);
-		CandlestickDTO candlestick3 = new CandlestickDTO(Long.valueOf(0L), "open", "high", "low",
-				"close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
-				"takerBuyQuoteAssetVolume");
+		ZonedDateTime time = ZonedDateTime.of(2021, 1, 1, 0, 59, 59, 59, TimeZone.getDefault().toZoneId());
+		requestService.setStartDate(time.toInstant());;
+		requestService.updateCache("BTCUSDT");
+		List<CandlestickDTO> candlesticks = service.getCandlesticks(time.toInstant().toEpochMilli());
+		candlesticks.stream().forEach(candlestick -> logger.info(candlestick.toString()));
+
+		// CandlestickDTO candlestick1 = new CandlestickDTO(Long.valueOf(0L), "open", "high", "low",
+		// 		"close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
+		// 		"takerBuyQuoteAssetVolume");
+		// Thread.sleep(2000);
+		// CandlestickDTO candlestick2 = new CandlestickDTO(Long.valueOf(0L), "open", "high", "low",
+		// 		"close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
+		// 		"takerBuyQuoteAssetVolume");
+		// Thread.sleep(2000);
+		// CandlestickDTO candlestick3 = new CandlestickDTO(Long.valueOf(0L), "open", "high", "low",
+		// 		"close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
+		// 		"takerBuyQuoteAssetVolume");
 		
-		logger.info("candlestick 3:\t" + candlestick3 + "\n");
+		// logger.info("candlestick 3:\t" + candlestick3 + "\n");
 
-		service.insertCandlestick(candlestick1);
-		service.insertCandlestick(candlestick2);
-		service.insertCandlestick(candlestick3);
-		logger.info("Candlesticks successfully added");
+		// service.insertCandlestick(candlestick1);
+		// service.insertCandlestick(candlestick2);
+		// service.insertCandlestick(candlestick3);
+		// logger.info("Candlesticks successfully added");
 
-		logger.info("Printing candlesticks");
-		CandlestickDTO candlestickDTO = service.getCandlestick(Long.valueOf(0));
-		logger.info(candlestickDTO.toString());
+		// logger.info("Printing candlesticks");
+		// CandlestickDTO candlestickDTO = service.getCandlestick(Long.valueOf(0));
+		// logger.info(candlestickDTO.toString());
 	}
 
 }

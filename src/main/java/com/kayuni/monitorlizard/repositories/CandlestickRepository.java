@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface CandlestickRepository extends JpaRepository<CandlestickEntity, Long> {
     List<CandlestickEntity> findByOpenTime(Long openTime);
     CandlestickEntity findTopByOrderByOpenTimeDesc();
+    List<CandlestickEntity> findByOpenTimeGreaterThanOrderByOpenTime(Long openTime);
 }

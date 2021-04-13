@@ -206,6 +206,7 @@ public class CandlestickEntity {
         candlestickDTO.setLow(candlestick.getLow());
         candlestickDTO.setClose(candlestick.getClose());
         candlestickDTO.setVolume(candlestick.getVolume());
+        candlestickDTO.setQuoteAssetVolume(candlestick.getQuoteAssetVolume());
         candlestickDTO.setCloseTime(candlestick.getCloseTime());
         candlestickDTO.setNumberOfTrades(candlestick.getNumberOfTrades());
         candlestickDTO.setTakerBuyBaseAssetVolume(candlestick.getTakerBuyBaseAssetVolume());

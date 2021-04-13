@@ -1,6 +1,7 @@
 package com.kayuni.monitorlizard.services;
 
 import java.time.Instant;
+import com.binance.api.client.domain.market.CandlestickInterval;
 
 public interface ExchangeRequestService {
 
