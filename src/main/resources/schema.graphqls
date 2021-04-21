@@ -1,0 +1,21 @@
+type Query {
+    candlesticksFromTime(time: Int): Candlestick
+    symbolByName(name: String): Symbol
+}
+
+type Candlestick {
+    openTime: Int
+    open: String
+    high: String
+    low: String
+    close: String
+    volume: String
+}
+
+type Symbol {
+    name: String
+    change: String
+    high: String
+    low: String
+    volume: String
+}
