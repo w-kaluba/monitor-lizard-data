@@ -46,7 +46,7 @@ public class MonitorLizardApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		ZonedDateTime time = ZonedDateTime.of(2021, 1, 1, 0, 59, 59, 59, TimeZone.getDefault().toZoneId());
-		requestService.setStartDate(time.toInstant());;
+		requestService.setStartDate(time.toInstant());
 		requestService.updateCache("BTCUSDT");
 		List<CandlestickDTO> candlesticks = service.getCandlesticks(time.toInstant().toEpochMilli());
 		candlesticks.stream().forEach(candlestick -> logger.info(candlestick.toString()));
