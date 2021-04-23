@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SymbolRepository extends JpaRepository<SymbolEntity, String> {
     List<SymbolEntity> findByName(String name);
-    SymbolEntity findTopByOrderByChangeDesc();
+
+    void deleteByName(String name);
+
 }
