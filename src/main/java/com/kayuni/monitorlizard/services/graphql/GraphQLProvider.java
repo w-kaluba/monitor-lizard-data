@@ -9,6 +9,10 @@ import com.google.common.io.Resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.net.URL;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
@@ -18,6 +22,7 @@ import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeRuntimeWiring;
 import graphql.schema.idl.TypeDefinitionRegistry;
 
+@Component
 public class GraphQLProvider {
     private GraphQL graphQL;
 
@@ -26,7 +31,7 @@ public class GraphQLProvider {
 
     @Bean
     public GraphQL graphQL() {
-        return graphQL;
+        return this.graphQL;
     }
 
     @PostConstruct
@@ -48,9 +53,11 @@ public class GraphQLProvider {
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
             .type(TypeRuntimeWiring.newTypeWiring("Query")
-                .dataFetcher("candlesticksByTime", graphQLDataFetchers.getCandlesticksByTimeDataFetcher()))
+                .dataFetcher("candlesticksByTime", graphQLDataFetchers.getCandlesticksByTimeDataFetcher())
+                .dataFetcher("candlesticks", graphQLDataFetchers.getAllCandlesticksDataFetcher())
+                .dataFetcher("symbolByName", graphQLDataFetchers.getSymbolByNameDataFetcher()))
             // .type(TypeRuntimeWiring.newTypeWiring("Symbol")
-            //     .dataFetcher("symbolByName", graphQLDataFetchers.getSymbolByName()))
+        
             .build();
 
     }

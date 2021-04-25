@@ -5,17 +5,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import graphql.schema.DataFetcher;
 import com.kayuni.monitorlizard.services.binance.BinanceCandlestickService;
+import com.kayuni.monitorlizard.services.binance.BinanceSymbolService;
 import com.kayuni.monitorlizard.dto.CandlestickDTO;
-import com.kayuni.monitorlizard.models.SymbolEntity;
-
+import com.kayuni.monitorlizard.dto.SymbolDTO;
 
 @Component
 public class GraphQLDataFetchers {
     @Autowired
-	BinanceCandlestickService candlestickService;
+    BinanceCandlestickService candlestickService;
 
-    // @Autowired
-    // BinanceSymbolService symbolService;
+    @Autowired
+    BinanceSymbolService symbolService;
+
+    public DataFetcher<List<CandlestickDTO>> getAllCandlesticksDataFetcher() {
+        return dataFetchingEnvironment -> {
+            return candlestickService.getCandlesticks(Long.valueOf(0));
+        };
+    }
 
     public DataFetcher<List<CandlestickDTO>> getCandlesticksByTimeDataFetcher() {
         return dataFetchingEnvironment -> {
@@ -24,12 +30,10 @@ public class GraphQLDataFetchers {
         };
     }
 
-    // public DataFetcher<SymbolEntity> getSymbolByNameDataFetcher() {
-    //     return dataFetchingEnvironment -> {
-    //         String name = dataFetchingEnvironment.getArgument("name");
-    //         return symbolService.getSymbolByName(name);
-    //     };
-    //     };
+    public DataFetcher<SymbolDTO> getSymbolByNameDataFetcher() {
+        return dataFetchingEnvironment -> {
+            String name = dataFetchingEnvironment.getArgument("name");
+            return symbolService.getSymbol(name);
+        };
+    };
 }
-    
-
