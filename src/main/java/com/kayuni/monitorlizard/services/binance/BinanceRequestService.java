@@ -79,7 +79,6 @@ public class BinanceRequestService implements ExchangeRequestService {
     class BinanceUpdateCallback implements BinanceApiCallback<List<Candlestick>> {
         public void onResponse(List<Candlestick> response) {
             response.forEach(candlestick -> {
-                System.out.println("\n" + candlestick.toString() + "\n");
                 CandlestickDTO candlestickDTO = CandlestickEntity.prepareCandlestickDTO(candlestick);
                 service.insertCandlestick(candlestickDTO);
             });

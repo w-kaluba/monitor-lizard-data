@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import com.kayuni.monitorlizard.dto.SymbolDTO;
 
 @Entity
-@Table(name = "binance")
+@Table(name = "binance_symbol")
 public class SymbolEntity {
 
     @Id
@@ -26,7 +26,6 @@ public class SymbolEntity {
 
     @Column(name = "volume")
     private String volume;
-
 
     public SymbolEntity() {
     }
@@ -89,17 +88,11 @@ public class SymbolEntity {
 
     @Override
     public String toString() {
-        return "{" +
-            " name='" + getName() + "'" +
-            ", change='" + getChange() + "'" +
-            ", high='" + getHigh() + "'" +
-            ", low='" + getLow() + "'" +
-            ", volume='" + getVolume() + "'" +
-            "}";
+        return "{" + " name='" + getName() + "'" + ", change='" + getChange() + "'" + ", high='" + getHigh() + "'"
+                + ", low='" + getLow() + "'" + ", volume='" + getVolume() + "'" + "}";
     }
-    
-    
-    public static SymbolDTO prepareCandlestickDTO(SymbolEntity symbol) {
+
+    public static SymbolDTO prepareSymbolDTO(SymbolEntity symbol) {
         SymbolDTO symbolDTO = new SymbolDTO();
         symbolDTO.setName(symbol.getName());
         symbolDTO.setChange(symbol.getChange());

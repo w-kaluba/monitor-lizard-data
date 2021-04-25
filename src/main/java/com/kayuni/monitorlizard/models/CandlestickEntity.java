@@ -34,7 +34,7 @@ public class CandlestickEntity {
     @Column(name = "closeTime")
     private Long closeTime;
 
-    @Column(name = "quoteAssetVolume", nullable = false)
+    @Column(name = "quoteAssetVolume")
     private String quoteAssetVolume;
 
     @Column(name = "numberOfTrades")

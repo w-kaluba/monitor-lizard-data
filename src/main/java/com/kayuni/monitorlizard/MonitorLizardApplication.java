@@ -49,7 +49,7 @@ public class MonitorLizardApplication implements CommandLineRunner {
 		requestService.setStartDate(time.toInstant());
 		requestService.updateCache("BTCUSDT");
 		List<CandlestickDTO> candlesticks = service.getCandlesticks(time.toInstant().toEpochMilli());
-		candlesticks.stream().forEach(candlestick -> logger.info(candlestick.toString()));
+		// candlesticks.stream().forEach(candlestick -> logger.info(candlestick.toString()));
 
 		// CandlestickDTO candlestick1 = new CandlestickDTO(Long.valueOf(0L), "open", "high", "low",
 		// 		"close", "volume", Long.valueOf(0L), "quoteAssetVolume", Long.valueOf(0L), "takerBuyAssetVolume",
