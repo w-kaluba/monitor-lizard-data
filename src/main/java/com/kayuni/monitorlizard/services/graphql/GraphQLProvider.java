@@ -54,7 +54,7 @@ public class GraphQLProvider {
         return RuntimeWiring.newRuntimeWiring()
             .scalar(ExtendedScalars.GraphQLLong)
             .type(TypeRuntimeWiring.newTypeWiring("Query")
-                .dataFetcher("candlesticksByTime", graphQLDataFetchers.getCandlesticksByTimeDataFetcher())
+                .dataFetcher("candlesticksFromTime", graphQLDataFetchers.getCandlesticksByTimeDataFetcher())
                 .dataFetcher("candlesticks", graphQLDataFetchers.getAllCandlesticksDataFetcher())
                 .dataFetcher("symbolByName", graphQLDataFetchers.getSymbolByNameDataFetcher()))
             // .type(TypeRuntimeWiring.newTypeWiring("Symbol")
