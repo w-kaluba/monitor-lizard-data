@@ -25,7 +25,7 @@ public class GraphQLDataFetchers {
 
     public DataFetcher<List<CandlestickDTO>> getCandlesticksByTimeDataFetcher() {
         return dataFetchingEnvironment -> {
-            String time = dataFetchingEnvironment.getArgument("time");
+            Long time = dataFetchingEnvironment.getArgument("time");
             return candlestickService.getCandlesticks(Long.valueOf(time));
         };
     }

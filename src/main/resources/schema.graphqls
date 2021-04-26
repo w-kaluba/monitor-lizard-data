@@ -1,10 +1,12 @@
+scalar Long
+
 type Query {
-    candlesticksFromTime(time: Int): Candlestick
+    candlesticksFromTime(time: Long): Candlestick
     symbolByName(name: String): Symbol
 }
 
 type Candlestick {
-    openTime: Int
+    openTime: Long
     open: String
     high: String
     low: String

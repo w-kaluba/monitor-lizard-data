@@ -21,7 +21,7 @@ import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeRuntimeWiring;
 import graphql.schema.idl.TypeDefinitionRegistry;
-
+import graphql.scalars.ExtendedScalars;
 @Component
 public class GraphQLProvider {
     private GraphQL graphQL;
@@ -52,6 +52,7 @@ public class GraphQLProvider {
     
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
+            .scalar(ExtendedScalars.GraphQLLong)
             .type(TypeRuntimeWiring.newTypeWiring("Query")
                 .dataFetcher("candlesticksByTime", graphQLDataFetchers.getCandlesticksByTimeDataFetcher())
                 .dataFetcher("candlesticks", graphQLDataFetchers.getAllCandlesticksDataFetcher())
