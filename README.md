@@ -9,6 +9,7 @@ Binance Java API - https://github.com/binance-exchange/binance-java-api
 (Docker)
 
 In order to build from source you need to build the Binance Java API and install it to your local .m2 repository.
+You also need to configure a local instance of postgresql and add the sign in details to application.properties.
 You can then run the server using the below commands. 
 The server should be accessible at localhost:8080 with the GraphQL endpoint exposed at /graphql.
 
